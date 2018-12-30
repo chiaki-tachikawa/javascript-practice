@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Snake Bite</title>
+		<meta charset="utf-8"/>
+		<script type="text/javascript">
+		"use strict";
+		var W, H, S =20;
+		//20X20のマスがゲームの領域
+		var snake = [], foods = [];
+		var keyCode = 0;
+		var point = 0;
+		var timer = NaN;
+		var ctx;
+		
+		//Pointオブジェクト
+		function Point(x, y){
+		this.x = x;
+		this.y = y;
+		}
+
+		//初期化関数
+		function init(){
+		var canvas = document.getElementById('field');
+		W = canvas.width/S;
+		H = canvas.height/S;
+		//20X20のマスがゲームの領域
+
+		ctx = canvas.getContext('2d');
+		//canvasをグローバル変数ctxに格納
+		ctx.font = "20px sans-serif";
+
+		//蛇の初期化 pushを使って、snakeの配列の最後に要素new Pointを追加。画面の中心座標を蛇の頭として追加
+		snake.push(new Point(W / 2, H / 2));
+
+		//餌の初期化
+		for(var i = 0; i<10 ;i++){
+		addFood()
+		//iは波括弧の中になくても良い。ない場合は、波括弧内のfunctionが繰り返される。ここでは餌を単純に10個追加。処理はaddFoodで。
+		}
+
+		timer = setInterval("tick()", 200);
+		window.onkeydown = keydown;
+		//onkeydownはイベントハンドラー。要素(この場合window)に対して、キーを押下するプロセス。windowはオブジェクト。代表的なものはブラウザー。詳しくは別ノートを！
+		}
+		
+		//餌の追加
+		function addFood(){
+		while(true){
+		var x = Math.floor(Math.random()*W);
+		var y = Math.floor(Math.random()*H);
+		//Math.floorは切り捨て。Math.randomはランダムな数字を出す
+		//餌の追加を行う。xとyの値は０から９までで不規則かつ等確率で求められている。
+
+		if(isHit(foods, x, y)|| isHit(snake, x, y)){
+		//isHitはfunctionの名前。追加される餌が他の餌や蛇の上に来ないために判定をする。
+		continue;
+		//何か特別なこと(この場合snakeが餌を食べる)があってもループを続きから始める。
+		//ヒットした場合はcontinueによって再びwhileの先頭に戻る。
+		}
+
+		foods.push(new Point (x, y));
+		break;}
+		//ヒットしなければ、餌をfoodsに追加して関数を抜ける。
+		}
+
+		//衝突判定
+		function isHit(data, x, y){
+		for(var i = 0; i<data.length; i++){
+		if (data[i].x == x && data[i].y ==y){
+		return true;
+		}
+		}
+		return false;
+		}
+
+		function moveFood(x, y){
+		foods = foods.filter(
+		//filterは()内のfunctionに該当する要素をfoodsの配列に付け加える。
+		function(p){
+		return(p.x != x || p.y !=y);
+		});
+		addFood();
+		}
+
+		function tick(){
+		var x = snake[0].x;
+		var y = snake[0].y;
+		switch(keyCode){
+		//case以下のコンディションによって異なったアクションを遂行する
+		case 37: x--;	
+		break;
+		case 38: y--;
+		break;
+		case 39: x++;
+		break;
+		case 40: y++;
+		break;
+		default: paint();
+		return;
+		}
+
+		//自分or壁に衝突？
+		if(isHit(snake, x, y) || x<0 || x>=W||y<0||y>=H){
+		clearInterval(timer);
+		paint();	
+		return;
+		}
+
+		//頭を先頭に追加
+		snake.unshift(new Point(x, y));
+		if(isHit(foods, x, y)){
+		point += 10;
+		// 餌を食べた
+		moveFood(x, y);
+		}else{
+		snake.pop();
+		//食べてない→尻尾を削除
+		}
+		paint ();
+		}
+
+		function paint(){
+		ctx.clearRect(0, 0, W*S, H*S);
+		ctx.fillStyle = "rgb(256, 0, 0)";
+		
+		ctx.fillText(point, S, S*2);
+		ctx.fillStyle = "rgb(0, 0, 255)";
+
+		foods.forEach(function(p){
+		//forEachは配列foodsの要素一つ一つにfunctionを遂行する
+		ctx.fillText("+", p.x*S, (p.y+1)*S);
+		});
+		snake.forEach(function(p){
+		ctx.fillText("*", p.x*S, (p.y+1)*S);
+		//？？
+		});
+		}
+
+		function keydown(event){
+		keyCode = event.keyCode;
+		}
+		</script>
+	</head>
+	<body onload="init()">
+	//文書を読み込んだ際にinit()が実行される
+	<canvas id="field"
+	width="400" height="400" style="background:#cccccc">
+	//20X20のマスがゲームの領域
+
+	</canvas>
+	</body>
+	</html>
+		
+
+
+
+
+		

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>千晶の日常</title>
+
+<script>
+function sum(){
+var v =
+	document.getElementById("number").value;
+
+var r =0
+var i =0
+
+while (i<=v ){
+
+	r+=i;
+	i++;
+
+}
+
+var s ="1から"+v+"の合計は"+r+"です";
+
+document.getElementById("result 1").textContent=s;
+
+}
+
+function keydown(e){
+	var s="";
+	switch(e.keyCode){
+	case 37:s="左";break;
+	case 38:s="上";break;
+	case 39:s="右";break;
+	case 40:s="下";break;
+	default:s="それ以外";break;}
+
+document.getElementById("info").textContent= s;}
+
+window.addEventListener('keydown',keydown);
+		
+
+
+function c2f(c){
+	var f=(9 /5 )*c+32;
+	return Math.floor(f);
+	}
+
+function convert(){
+	var c= document.getElementById("celsius").value;
+
+	var f = c2f(c);
+	var s ="摂氏:" +c+"度　華氏:"+f+"度";
+
+document.getElementById("result 2").textContent=s;
+	}
+
+
+function insertItem(){
+	var container= document.getElementById("container");
+	var item =document.createElement("li");
+	item.textContent="hello";
+	container.appendChild(item);
+		}
+
+function removeItem(){
+	var container= document.getElementById("container");
+	var item=container.lastChild;
+	if (item){
+	container.removeChild(item);
+	}	
+	}
+
+
+
+</script>
+
+</head>
+
+
+<body>
+
+<input id="number"  />
+<button onclick ="sum()">合計</button>
+<p id="result 1"></p>
+<p id="info"></p>
+
+<input id ="celsius" type="range" min="0" max="100"
+onchange ="convert()"/> <!--(1)-->
+<p id ="result 2"></p>
+
+<button onclick ="insertItem()">Insert</button>
+<button onclick ="removeItem()">Delete</button> 
+
+<ol id="container"></ol>
+
+
+</body>
+
+
+</html>

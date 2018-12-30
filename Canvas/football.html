@@ -1,0 +1,36 @@
+P0<!DOCTYPE html>
+<html>
+	<head>
+		<script>
+		var ctx;
+		function init(){
+		var canvas = document.getElementById("canvas");
+		ctx=canvas.getContext("2d");
+		ctx.strokeStyle="#FFFFFF";
+		ctx.fillStyle="#29640c";
+	
+		ctx.fillRect(10, 10, 1000, 600);
+		
+		
+		ctx.beginPath();
+		ctx.moveTo(245, 10);
+		ctx.lineTo(245, 300);
+		ctx.stroke();
+
+		ctx.strokeRect(10, 100, 50, 90);
+		ctx.strokeRect(450, 100, 50, 90);
+
+		ctx.beginPath();
+		ctx.arc(245, 145, 45, 2*Math.PI, false);
+		ctx.closePath();
+		ctx.stroke();
+
+
+		}
+		</script>
+	</head>
+
+	<body onload="init()">
+		<canvas id="canvas" width="500" height="300" ></canvas>
+	</body>
+<html>

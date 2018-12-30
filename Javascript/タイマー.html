@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+	var timerId;
+	function timeoutStart(){
+	timerId=setTimeout(whattime, 1000);	
+	}
+	function timeoutStop(){
+	clearTimeout(timerId);	
+	}
+
+//	function intervalStart(){
+//	timerId = setInterval(whattime,1000);
+//	}	
+//連続で押すとタイマーが止まらなくなる
+
+	function intervalStart(){
+	clearInterval(timerId);
+	timerId =setInterval(whattime, 2000);
+	}
+//タイマーを呼ぶ前に一度クリアする
+ 
+	function intervalStop(){
+	clearInterval(timerId);
+	}
+
+	function whattime(){
+	document.getElementById("info").textContent = new Date();
+	}
+
+</script>
+</head>
+
+<body>
+	<button onclick ="timeoutStart()">setTimeout</button>
+	<button onclick ="timeoutStop()">clearTimeout</button>
+	<button onclick ="intervalStart()">setInterval</button>
+	<button onclick ="intervalStop()">clearInterval</button>
+	
+	<p id="info"></p>
+</body>
+</html>
+
+
+
+
+    var shine= lines[1].split(' ');
+    console.log(shine[0]);
+    var owarine =lines[lines [0]].split(' ');
+    console.log(owarine[1]);
+  for (i=0; 0<=i<=1+lines[0]; i++){
+       var que =lines[i].split(' ');
+
+        console.log(que[2].split(/\n/));

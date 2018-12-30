@@ -1,0 +1,92 @@
+<! DOCTYPE html>
+<html>
+<head>
+<title>¥Þ¥ë¥Ð¥Ä¥²¡¼¥à</title>
+<style>
+	table { 
+		position:absolute;
+		background-color:lightgrey;
+		left:100px;
+		top:100px;
+		width:300px;	
+		height:200px;
+
+		}
+
+</style>
+
+<script>
+		function maru(){
+		var container=document.getElementById("container");
+		var item=document.createElement("this");
+		var last=container.lastChild
+		if(last){
+		container.removeChild(last);
+			}else{
+		item.textContent="¡û";
+		container.appendChild(item);
+		}}
+		
+
+		
+		var num=0;
+		function maru2(e){
+				
+		if(num++%2==0){
+		e.textContent="¡û";
+		
+			}else{
+		e.textContent="X";
+	
+		}}
+
+		
+
+</script>
+
+
+
+</head>
+
+
+
+<body>
+	<table border="2">
+	<tr>
+		<td class="cell" 
+			onclick="maru2(this)">
+					
+		</td>
+		<td class="cell" 
+			onclick="maru2(this)">
+		<p id="count"></p>
+		</td>	
+		<td class="cell" 
+			onclick="maru2(this)"></td>
+	</tr>
+	<tr>
+		<td class="cell" 
+			onclick="maru2(this)"></td>
+		<td class="cell" 
+			onclick="maru2(this)"></td>	
+		<td class="cell" 
+			onclick="maru2(this)"></td>
+	</tr>
+	<tr>
+		<td class="cell" 
+			onclick="maru2(this)"></td>
+		<td class="cell" 
+			onclick="maru2(this)"></td>
+		<td class="cell" 
+			onclick="maru2(this)"></td>
+	</tr>
+	</table>
+
+	
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script>
+
+		var ctx;
+		function init(){
+		canvas = document.getElementById("canvas");
+		ctx=canvas.getContext("2d");
+		ctx.fillStyle="#29604c";
+		
+	
+		ctx.fillRect(10,10, 500, 500);
+	
+
+		ctx.beginPath();
+		ctx.fillStyle="#ecf92c"
+		ctx.moveTo(245,245);
+		ctx.arc(245, 245, 30, -1*Math.PI/6, Math.PI/6, true);
+		ctx.closePath();
+		ctx.fill();
+
+		}
+		</script>
+	</head>
+	<body onload=init()></body>
+	<canvas id="canvas" width="500" height="500"></canvas>
+	</body>
+</html>
+		

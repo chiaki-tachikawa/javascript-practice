@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html> 
+	<head>
+		<script>
+		var ctx;
+		function init(){
+			var canvas = document.getElementById("canvas");
+			ctx = canvas.getContext("2d");
+			ctx.lineWidth = 5;
+						
+			
+			ctx.beginPath();
+			ctx.moveTo(100, 100);
+			ctx.lineTo(150, 50);
+			ctx.lineTo(200, 100);
+			ctx.stroke();
+			//実際の描画を行う
+
+			ctx.beginPath();
+			ctx.strokeStyle = "#FF00FF";
+			//線や輪郭の色
+			ctx.moveTo(300, 100);
+			ctx.lineTo(350, 50);
+			ctx.lineTo(400, 100);
+			ctx.closePath();
+			//パスを閉じる処理
+			ctx.stroke();
+			
+
+			ctx.beginPath();
+			ctx.fillStyle = "#FFFF00";
+			//塗りつぶしの色
+			ctx.moveTo(500, 100);
+			ctx.lineTo(550, 50);
+			ctx.lineTo(600, 100);
+			ctx.fill();
+			//塗りつぶす
+			}
+		</script>
+		<script>
+		var ctx2;
+		function init2(){
+		var canvas=
+			document.getElementById("canvas");
+		ctx2.strokeStyle = "#FF0000";
+		ctx2.fillStyle ="#00FFFF";
+		ctx2.lineWidth=5;
+
+		ctx2.fillRect(100, 30, 80,50);
+		ctx2.strokeRect(200, 30, 80, 50);
+		ctx2.fillRect(300, 30, 80, 50);6721	
+
+
+	</head>
+
+	<body onload ="init()">
+		<canvas id ="canvas" width="600" height="400"></canvas>
+	</body>
+</html>
+		
+			
